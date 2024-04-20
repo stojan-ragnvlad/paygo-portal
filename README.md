@@ -54,6 +54,35 @@ Client Version: v1.30.0
 
 #### minikube
 
-Follow the following link instructions:
+Go to the following GitHub page in a web browser:
 
-https://minikube.sigs.k8s.io/docs/start/
+https://github.com/kubernetes/minikube/releases/tag/v1.33.0
+
+Download the file from the `Assets` section of this web page that has the
+following filename:
+
+```minikube-linux-amd64.tar.gz```
+
+Open a terminal in the `~/Downloads` directory by running the following from
+anywhere in your terminal:
+
+```cd ~/Downloads```
+
+Extract the minikube files by running the following command from the
+`~/Downloads` directory of your terminal:
+
+```tar -xvzf minikube-linux-amd64.tar.gz```
+
+Move and rename the `minikube-linux-amd64` executable file into the `~/bin`
+directory by running the following command from the downloads directory
+of your terminal:
+
+```mv minikube-linux-amd64 ~/bin/minikube```
+
+Running the following command from anywhere in your terminal:
+
+```minikube version```
+
+Should output the following text:
+
+```minikube version: v1.33.0```
