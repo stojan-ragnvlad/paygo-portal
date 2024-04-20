@@ -52,6 +52,12 @@ Which should output:
 Client Version: v1.30.0
 ```
 
+#### kind
+
+Go to the following web page in a web browser and follow the instructions:
+
+https://kind.sigs.k8s.io/docs/user/quick-start/#installing-from-release-binaries
+
 #### minikube
 
 Go to the following GitHub page in a web browser:
