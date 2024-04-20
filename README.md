@@ -12,6 +12,8 @@ https://docs.docker.com/desktop/release-notes/
 
 ### Linux
 
+#### kubectl
+
 For version 1.30.0 of kubectl, run the following command from the home
 directory of your terminal:
 
@@ -49,3 +51,9 @@ Which should output:
 ```
 Client Version: v1.30.0
 ```
+
+#### minikube
+
+Follow the following link instructions:
+
+https://minikube.sigs.k8s.io/docs/start/
