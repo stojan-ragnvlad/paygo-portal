@@ -97,3 +97,46 @@ To start a `minikube` cluster, run the following code from anywhere in your
 terminal:
 
 ```minikube start```
+
+## Loggin into Docker Hub
+
+### Creating a GPG Key Pair
+
+From anywhere in your terminal, run the following command to create a key:
+
+```gpg --generate-key```
+
+Follow the terminal prompts.
+
+Copy the GPG ID from the line of text that looks like the following:
+
+```gpg: key XXXXXXXXXXXXXXXX marked as ultimately trusted```
+
+where `XXXXXXXXXXXXXXXX` is the GPG ID.
+
+### Initializing pass
+
+Run the following command from anywhere in your terminal:
+
+```pass init XXXXXXXXXXXXXXXX```
+
+where `XXXXXXXXXXXXXXXX` is the GPG ID.
+
+### Log into Docker on Your Machine
+
+Run the following command from anywhere in your terminal:
+
+```docker login```
+
+Follow the terminal prompts.
+
+## Updating Docker Images in Docker Hub
+
+To locally build the docker image, run the following command from the
+directory of this read me file in your terminal:
+
+```docker build -t YOUR-DOCKER-HUB-USERNAME/IMAGE_DIRECTORY_NAME:latest .```
+
+To update the docker image in the registry, run the following command:
+
+```docker push YOUR-DOCKER-HUB-USERNAME/IMAGE_DIRECTORY_NAME:latest```
