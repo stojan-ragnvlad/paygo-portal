@@ -86,3 +86,8 @@ Running the following command from anywhere in your terminal:
 Should output the following text:
 
 ```minikube version: v1.33.0```
+
+To start a `minikube` cluster, run the following code from anywhere in your
+terminal:
+
+```minikube start```
