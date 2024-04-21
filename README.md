@@ -140,3 +140,30 @@ directory of this read me file in your terminal:
 To update the docker image in the registry, run the following command:
 
 ```docker push YOUR-DOCKER-HUB-USERNAME/IMAGE_DIRECTORY_NAME:latest```
+
+## Starting the Cluster on a Local Machine
+
+Open a terminal in the same directory as this read me file.
+
+Change your directory to the `static-web-server/` directory.
+
+Run the following command to create the deployment:
+
+```kubectl create -f pod.yaml```
+
+Run the following command to check the status of the created deployment:
+
+```kubectl get deployments```
+
+The output of the previous command should look like the following after around
+a minute or so:
+
+```static-web-server-deployment   1/1     1            1           4m24s```
+
+Run the following command to port forward a localhost port to the deployment,
+where LOCAL_PORT is a local port like 8082 that you could view in the web
+browser:
+
+```
+kubectl port-forward deployment/static-web-server-deployment LOCAL_PORT:80
+```
