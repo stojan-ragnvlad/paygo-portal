@@ -98,7 +98,7 @@ terminal:
 
 ```minikube start```
 
-## Loggin into Docker Hub
+## Logging into Docker Hub
 
 ### Creating a GPG Key Pair
 
