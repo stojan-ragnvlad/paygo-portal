@@ -7,3 +7,5 @@ https://cordova.apache.org/#getstarted
 ```cd name-of-cordova-application```
 
 ```npx cordova platform add browser```
+
+```npx cordova run browser```
