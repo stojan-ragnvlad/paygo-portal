@@ -3,5 +3,12 @@
   "$id": "https://example.com/product.schema.json",
   "title": "Application",
   "description": "An application in the software system.",
-  "type": "object"
+  "type": "object",
+  "properties": {
+    "version": {
+      "description": "The unique identifier for a product",
+      "type": "integer"
+    }
+  },
+  "required": [ "version" ]
 }
