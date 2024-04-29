@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "/schemas/application",
+  "$id": "2024.4.28",
   "title": "Application",
   "description": "An application in the software system.",
   "type": "object",
@@ -12,7 +12,14 @@
     },
     "tools": {
       "description": "The tools that the application includes",
-      "type": "array"
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "$ref": "./mobile-qr-code-scanner-schema.json"
+          }
+        ]
+      }
     }
   },
   "required": [ "version" ]
