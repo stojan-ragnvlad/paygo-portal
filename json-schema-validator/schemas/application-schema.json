@@ -14,10 +14,17 @@
       "description": "The tools that the application includes",
       "type": "array",
       "items": {
-        "anyOf": [
-          {
-            "$ref": "./mobile-qr-code-scanner-schema.json"
-          }
+        "enum": [
+          "qr-code-scanner"
+        ]
+      }
+    },
+    "platforms": {
+      "description": "The hardware devices that the application can run on.",
+      "type": "array",
+      "items": {
+        "enum": [
+          "touch-screen-phone"
         ]
       }
     }
