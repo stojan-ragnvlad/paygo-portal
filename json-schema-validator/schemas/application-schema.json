@@ -10,13 +10,51 @@
       "type": "string",
       "pattern": "^[0-9][0-9][0-9][0-9]\.[0-9][0-9]?\.[0-9][0-9]?$"
     },
-    "tools": {
-      "description": "The tools that the application includes",
-      "type": "array",
-      "items": {
-        "enum": [
-          "qr-code-scanner"
-        ]
+    "camera-scanner": {
+      "properties": {
+        "type": {
+          "enum": [
+            "qr-code"
+          ]
+      }
+    },
+    "data-encryption": {
+      "properties": {
+        "encryptionMethod": {
+          "enum": [
+            "finger-print",
+            "numeric-code",
+            "security-question",
+            "password",
+            "hash-key"
+          ]
+        }
+      }
+    },
+    "data-storage": {
+      "properties": {
+        "accessFrequency": {
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "capacity": {
+          "type": "object",
+          "properties": {
+            "amount": {
+              "type": "integer"
+            },
+            "unit": {
+              "enum": [
+                "mb",
+                "gb",
+                "tb"
+              ]
+            }
+          }
+        }
       }
     },
     "platforms": {
@@ -29,5 +67,5 @@
       }
     }
   },
-  "required": [ "version" ]
+  "required": [ "version", "platforms" ]
 }
