@@ -62,7 +62,8 @@
       "type": "array",
       "items": {
         "enum": [
-          "touch-screen-phone"
+          "touch-screen-phone",
+          "cloud-server"
         ]
       }
     }
