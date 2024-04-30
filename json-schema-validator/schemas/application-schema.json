@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "2024.4.28",
+  "$id": "/application",
   "title": "Application",
   "description": "An application in the software system.",
   "type": "object",
@@ -10,13 +10,27 @@
       "type": "string",
       "pattern": "^[0-9][0-9][0-9][0-9]\.[0-9][0-9]?\.[0-9][0-9]?$"
     },
-    "camera-scanner": {
+    "qr-code-camera-scanner": {
+      "type": "boolean"
+    },
+    "key-string-generator": {
+      "type": "object",
       "properties": {
-        "type": {
+        "numberOfCharacters": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 24
+        },
+        "characterType": {
           "enum": [
-            "qr-code"
+            "digit"
           ]
+        }
       }
+    },
+    "qr-code-generator": {
+      "type": "object",
+      "properties": {}
     },
     "generator": {
       "enum": [
