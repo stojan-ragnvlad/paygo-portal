@@ -10,68 +10,92 @@
       "type": "string",
       "pattern": "^[0-9][0-9][0-9][0-9]\.[0-9][0-9]?\.[0-9][0-9]?$"
     },
-    "qr-code-camera-scanner": {
-      "type": "boolean"
-    },
-    "key-string-generator": {
-      "type": "object",
-      "properties": {
-        "numberOfCharacters": {
-          "type": "integer",
-          "minimum": 0,
-          "maximum": 24
-        },
-        "characterType": {
-          "enum": [
-            "digit"
-          ]
-        }
-      }
-    },
-    "qr-code-generator": {
-      "type": "object",
-      "properties": {}
-    },
-    "generator": {
-      "enum": [
-        "hash-key",
-        "qr-code"
-      ]
-    },
-    "data-encryption": {
-      "properties": {
-        "encryptionMethod": {
-          "enum": [
-            "finger-print",
-            "numeric-code",
-            "security-question",
-            "password",
-            "hash-key"
-          ]
-        }
-      }
-    },
-    "data-storage": {
-      "properties": {
-        "accessFrequency": {
-          "enum": [
-            "low",
-            "medium",
-            "high"
-          ]
-        },
-        "capacity": {
-          "type": "object",
-          "properties": {
-            "amount": {
-              "type": "integer"
-            },
-            "unit": {
-              "enum": [
-                "mb",
-                "gb",
-                "tb"
-              ]
+    "tools": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "qr-code-camera-scanner": {
+            "type": "boolean"
+          },
+          "key-string-generator": {
+            "type": "object",
+            "properties": {
+              "numberOfCharacters": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 24
+              },
+              "characterType": {
+                "enum": [
+                  "digit"
+                ]
+              }
+            }
+          },
+          "qr-code-generator": {
+            "type": "object",
+            "properties": {
+              "source": {
+                "enum": [
+                  "string"
+                ]
+              },
+              "output": {
+                "enum": [
+                  "png"
+                ]
+              }
+            }
+          },
+          "image-viewer": {
+            "type": "object",
+            "properties": {
+              "size": {
+                "enum": [
+                  "large",
+                  "fullScreen"
+                ]
+              }
+            }
+          },
+          "data-encryption": {
+            "properties": {
+              "encryptionMethod": {
+                "enum": [
+                  "finger-print",
+                  "numeric-code",
+                  "security-question",
+                  "password",
+                  "hash-key"
+                ]
+              }
+            }
+          },
+          "data-storage": {
+            "properties": {
+              "accessFrequency": {
+                "enum": [
+                  "low",
+                  "medium",
+                  "high"
+                ]
+              },
+              "capacity": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "type": "integer"
+                  },
+                  "unit": {
+                    "enum": [
+                      "mb",
+                      "gb",
+                      "tb"
+                    ]
+                  }
+                }
+              }
             }
           }
         }
