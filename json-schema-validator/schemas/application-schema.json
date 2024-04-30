@@ -18,6 +18,12 @@
           ]
       }
     },
+    "generator": {
+      "enum": [
+        "hash-key",
+        "qr-code"
+      ]
+    },
     "data-encryption": {
       "properties": {
         "encryptionMethod": {
