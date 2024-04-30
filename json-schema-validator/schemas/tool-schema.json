@@ -5,6 +5,15 @@
   "description": "A tool that can be part of an application.",
   "type": "object",
   "properties": {
+    "button": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "maxLength": 100
+        }
+      }
+    },
     "qr-code-camera-scanner": {
       "type": "boolean"
     },
