@@ -10,7 +10,7 @@
       "type": "string",
       "pattern": "^[0-9][0-9][0-9][0-9]\.[0-9][0-9]?\.[0-9][0-9]?$"
     },
-    "tools": {
+    "application-flow": {
       "type": "array",
       "items": { "$ref": "/tool" }
     },
