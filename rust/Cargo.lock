@@ -352,6 +352,7 @@ dependencies = [
  "getrandom",
  "qrcode-generator",
  "rand",
+ "wasm-bindgen",
  "wasm-pack",
 ]
 
