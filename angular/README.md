@@ -15,6 +15,6 @@ docker build -t angular-project:latest .
 Run the following to run the container on a local machine:
 
 ```
-docker run -d -v static-files:public angular-project:latest
+docker run -d -v static-files:/public angular-project:latest
 ```
 
