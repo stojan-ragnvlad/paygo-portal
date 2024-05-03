@@ -9,7 +9,7 @@ docker build -t node-ts-project:latest .
 Run the following to run the container on a local machine:
 
 ```
-docker run -d -p 127.0.0.1:8080:80/tcp -v static-files:public\
+docker run -d -p 127.0.0.1:8080:80/tcp -v static-files:/public\
  node-ts-project:latest
 ```
 
