@@ -3,11 +3,7 @@ import { Request, Response } from 'express';
 
 const server = express();
 
-server.use(express.static('public'));
-
-server.get('/', (request: express.Request, response: express.Response) => {
-  response.send('Hello World!');
-});
+server.use(express.static('public/browser'));
 
 server.listen(80);
 
