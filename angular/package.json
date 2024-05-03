@@ -10,5 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "@angular/cli": "^17.3.6"
+  },
+  "devDependencies": {
+    "json-schema-to-typescript": "^14.0.4"
   }
 }
