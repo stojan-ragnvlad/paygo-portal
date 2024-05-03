@@ -8,3 +8,4 @@ edition = "2021"
 [dependencies]
 qrcode-generator = "4.1.9"
 rand = "0.8.5"
+wasm-pack = "0.12.1"
