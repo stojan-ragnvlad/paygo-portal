@@ -22,41 +22,16 @@
       "properties": {
         "numberOfCharacters": {
           "type": "integer",
-          "minimum": 0,
+          "minimum": 1,
           "maximum": 24
-        },
-        "characterType": {
-          "enum": [
-            "digit"
-          ]
         }
       }
     },
     "qr-code-generator": {
-      "type": "object",
-      "properties": {
-        "source": {
-          "enum": [
-            "string"
-          ]
-        },
-        "output": {
-          "enum": [
-            "png"
-          ]
-        }
-      }
+      "type": "boolean"
     },
     "image-viewer": {
-      "type": "object",
-      "properties": {
-        "size": {
-          "enum": [
-            "large",
-            "fullScreen"
-          ]
-        }
-      }
+      "type": "boolean"
     },
     "data-encryption": {
       "properties": {
