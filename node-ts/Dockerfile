@@ -6,5 +6,7 @@ RUN npm i
 
 RUN npx tsc
 
+RUN mkdir public
+
 CMD node index.js
 
