@@ -1,0 +1,14 @@
+{
+  "name": "compile-time-tools",
+  "version": "0.1.0",
+  "files": [
+    "compile_time_tools_bg.wasm",
+    "compile_time_tools.js",
+    "compile_time_tools.d.ts"
+  ],
+  "module": "compile_time_tools.js",
+  "types": "compile_time_tools.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
