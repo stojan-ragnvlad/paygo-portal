@@ -27,10 +27,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [],
-            "customWebpackConfig": {
-              "path": "./custom-webpack.config.js"
-            }
+            "scripts": []
           },
           "configurations": {
             "production": {
