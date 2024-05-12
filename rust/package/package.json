@@ -1,10 +1,11 @@
 {
   "name": "compile-time-tools",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "files": [
-    "compile_time_tools_bg.wasm",
-    "compile_time_tools.js",
-    "compile_time_tools.d.ts"
+    "rust_bg.wasm",
+    "rust.js",
+    "rust_bg.wasm.d.ts",
+    "rust.d.ts"
   ],
   "module": "compile_time_tools.js",
   "types": "compile_time_tools.d.ts",
