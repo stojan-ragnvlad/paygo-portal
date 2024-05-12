@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 
 const server = express();
 
-server.use(express.static('public/browser'));
+server.use(express.static('public/'));
 
 server.listen(80);
 
