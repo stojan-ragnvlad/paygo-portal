@@ -17,7 +17,7 @@ docker cp container_name:public .
 ```
 
 ```
-docker run -d -v rust-volume:/public rust-project:latest
+docker run -d rust-project:latest
 ```
 
 ```
@@ -25,7 +25,10 @@ docker cp container_name:public .
 ```
 
 ```
-docker run -d -p 127.0.0.1:8080:80/tcp -v angular-volume:/public\
- -v rust-volume:/public node-ts-project:latest
+docker run -d -p 127.0.0.1:8080:80/tcp node-ts-project:latest
+```
+
+```
+docker cp . node_ts_container_name:/public
 ```
 
