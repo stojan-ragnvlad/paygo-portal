@@ -20,7 +20,8 @@
       "items": {
         "enum": [
           "touch-screen-phone",
-          "cloud-server"
+          "cloud-server",
+          "laptop-computer"
         ]
       }
     }
