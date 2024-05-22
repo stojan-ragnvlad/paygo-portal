@@ -26,5 +26,11 @@ Install this:
 
 ```sudo apt install python-is-python3```
 
+## Build Steps
 
+* Run this from the same directory as this read me file:
+
+```wasm-pack build --target web```
+
+```cargo build --target=wasm32-unknown-unknown --release```
 

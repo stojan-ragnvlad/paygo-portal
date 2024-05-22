@@ -4,12 +4,7 @@ use rand::distributions::Alphanumeric;
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
-extern {
-    pub fn alert(s: &str);
-}
-
-#[wasm_bindgen]
-pub fn greet() {
+pub fn greet() -> String {
   let mut rng = thread_rng();
   let chars: String =
       (0..24).map(|_| rng.sample(Alphanumeric) as char).collect();
@@ -22,6 +17,6 @@ pub fn greet() {
     //  "./qr-code.png"
   //).unwrap();
 
-  alert(&format!("Hello, {}!", chars));
+  return chars;
 }
 
