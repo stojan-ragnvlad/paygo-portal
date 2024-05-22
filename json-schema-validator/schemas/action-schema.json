@@ -4,7 +4,9 @@
   "title": "Action",
   "description": "An action that can be executed onto the platform.",
   "enum": [
-    "upload-file-as-blob"
+    "upload-a-file-as-a-blob",
+    "convert-the-blob-to-a-csv-table",
+    "display-the-csv-table-in-a-readable-format"
   ]
 }
 

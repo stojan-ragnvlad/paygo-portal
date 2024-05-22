@@ -3,7 +3,7 @@ Public Implementation of the Paygo Portal Infrastructure
 
 ## Creating an Application
 
-1. Start up a Virtual Machine in a cloud environment.
+1. Start up an Ubuntu Virtual Machine in a cloud environment.
 
 2. Connect to the virtual machine via SSH in a terminal or browser terminal.
 
@@ -12,8 +12,14 @@ following:
 
 ```
 curl \
-  -O\
+  -LO\
   https://github.com/stojan-ragnvlad/paygo-portal/archive/refs/heads/main.zip
+```
+
+4. Install the `zip` utility by runing the following:
+
+```
+sudo apt install zip
 ```
 
 ## Installing Docker Desktop

@@ -13,8 +13,11 @@
           "maxLength": 100
         },
         "action": {
-          "type": {
-            "$ref": "https://raw.githubusercontent.com/stojan-ragnvlad/paygo-portal/main/json-schema-validator/schemas/action-schema.json"
+          "type": "array",
+          "items": {
+            "type": {
+              "$ref": "https://raw.githubusercontent.com/stojan-ragnvlad/paygo-portal/main/json-schema-validator/schemas/action-schema.json"
+            }
           }
         }
       }
