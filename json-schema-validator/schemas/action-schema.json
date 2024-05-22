@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "/action",
+  "title": "Action",
+  "description": "An action that can be executed onto the platform.",
+  "enum": [
+    "upload-file-as-blob"
+  ]
+}
+
