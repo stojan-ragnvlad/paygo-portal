@@ -6,7 +6,5 @@ COPY src src
 
 RUN npm i
 
-RUN npm run build
-
-CMD exit 0
+CMD npm run build
 
