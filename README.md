@@ -16,11 +16,27 @@ curl \
   https://github.com/stojan-ragnvlad/paygo-portal/archive/refs/heads/main.zip
 ```
 
-4. Install the `zip` utility by runing the following:
+4. Install the `zip` utility by running the following:
 
 ```
 sudo apt install zip
 ```
+
+5. Install Docker by doing the following:
+
+Docker is available in the default repositories. You can install via apt:
+
+```
+sudo apt install docker.io
+```
+
+Then add yourself to the docker group:
+
+```
+sudo usermod -a -G docker $(whoami)
+```
+
+Restart the docker service and relogin, reboot, or start a new login shell.
 
 ## Installing Docker Desktop
 
