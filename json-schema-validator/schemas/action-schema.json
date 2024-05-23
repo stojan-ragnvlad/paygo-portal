@@ -3,10 +3,21 @@
   "$id": "/action",
   "title": "Action",
   "description": "An action that can be executed onto the platform.",
-  "enum": [
-    "upload-a-file-as-a-blob",
-    "convert-the-blob-to-a-csv-json-array",
-    "display-the-csv-json-array-in-a-readable-format"
-  ]
+  "type": "object",
+  "properties": {
+    "name": {
+      "enum": [
+        "upload-a-file-as-a-blob",
+        "convert-the-blob-to-a-csv-json-array",
+        "display-the-csv-json-array-in-a-readable-format"
+      ]
+    },
+    "stack": {
+      "enum": [
+        "node-ts",
+        "web-project"
+      ]
+    }
+  },
 }
 
