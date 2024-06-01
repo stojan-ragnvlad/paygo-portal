@@ -249,7 +249,61 @@ kubectl port-forward deployment/static-web-server-deployment LOCAL_PORT:80
 
 ## Postgres Notes:
 
+Run this to temporarily disable terminal history saving:
+
+```
+set +o history
+```
+
+Run this to install the proper command line tool.
+
+```
+curl -OL https://github.com/lukasmartinelli/pgfutter/releases/download/v1.2/pgfutter_linux_amd64
+```
+
+Pull the docker image:
+
+```
+sudo docker pull postgres:16.3-alpine3.20
+```
+
+Then:
+
+```
+sudo docker run -d -i --name some-postgres -h 127.0.0.1 -p 8081:5432 -e POSTGRES_PASSWORD=mysecretpassword postgres:16.3-alpine3.20
+```
+
+```
+sudo docker exec -it some-postgres sh
+```
+
+```
+psql -U postgres
+```
+
+```
+CREATE DATABASE nutrition;
+```
+
+```
+\c nutrition;
+```
+
+```
+curl -OL https://fdc.nal.usda.gov/fdc-datasets/FoodData_Central_csv_2024-04-18.zip
+```
+
+Then:
+
+```
+pgfutter --host "localhost" --db "myDatabase" --port "5432" --user "postgres" --pw "mySecretPassword" csv myCSVfile.csv
+```
+
 ```
 pip install csvkit psycopg2-binary
+```
+
+```
+csvsql --db "postgresql://hostname:port/nutrition?user=postgres&password=password" --insert --create-if-not-exists --db-schema "public" acquisition_samples.csv
 ```
 
