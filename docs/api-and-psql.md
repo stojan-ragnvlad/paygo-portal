@@ -1,5 +1,5 @@
 ```
-docker run -d -i --name some-postgres -h 127.0.0.1 -p 8081:5432 -e POSTGRES_PASSWORD=mysecretpassword postgres
+sudo docker run -d -i --name some-postgres -h 127.0.0.1 -p 8081:5432 -e POSTGRES_PASSWORD=mysecretpassword postgres:16.3-alpine3.20
 ```
 
 * `-e POSTGRES_HOST_AUTH_METHOD=trust`
