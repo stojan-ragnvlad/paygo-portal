@@ -9,7 +9,8 @@
       "enum": [
         "upload-a-file-as-a-blob",
         "convert-the-blob-to-a-csv-json-array",
-        "display-the-csv-json-array-in-a-readable-format"
+        "display-the-csv-json-array-in-a-readable-format",
+        "create-a-secure-password"
       ]
     },
     "stack": {
