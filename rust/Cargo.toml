@@ -9,8 +9,5 @@ edition = "2021"
 crate-type = ["cdylib"]
 
 [dependencies]
-# qrcode-generator = "4.1.9"
-rand = "0.8.5"
 wasm-bindgen = "0.2.84"
-getrandom = { version = "0.2", features = ["js"] }
 
