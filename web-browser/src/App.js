@@ -1,9 +1,9 @@
 import React from 'react';
-import init, { greet } from "compile-time-tools";
+import init, { greet } from 'compile-time-tools';
 
 export default class App extends React.Component {
   componentDidMount() {
-    init().then(() => console.log(greet()));
+    init().then(() => console.log(greet([1, 2, 3])));
   }
 
   render() {

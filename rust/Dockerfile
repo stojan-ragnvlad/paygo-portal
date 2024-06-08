@@ -8,11 +8,11 @@ RUN apk --no-cache add clang
 
 RUN apk --no-cache add build-base
 
+WORKDIR rust_build
+
 COPY src src
 
 COPY Cargo.toml Cargo.lock .
 
-RUN wasm-pack build --target web -d /public
-
-WORKDIR /public
+CMD wasm-pack build --target web -d /
 
