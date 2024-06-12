@@ -1,9 +1,9 @@
 import React from 'react';
-import init, { greet } from 'compile-time-tools';
+import init, { create_sql_schema_from_csv, } from '../lib/compile_time_tools';
 
 export default class App extends React.Component {
   componentDidMount() {
-    init().then(() => console.log(greet([1, 2, 3])));
+    init().then(() => console.log(create_sql_schema_from_csv([1, 2, 3])));
   }
 
   render() {
