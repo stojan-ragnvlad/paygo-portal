@@ -3,7 +3,8 @@ onmessage = function (event) {
 
   reader.readAsArrayBuffer(event.data[0]);
 
-  reader.onload = (loadEvent) => postMessage(reader.result);
+  reader.onload =
+    (loadEvent) => postMessage([event.data[0].name, reader.result]);
 
   reader.onerror = (error) => postMessage(error);
 }
