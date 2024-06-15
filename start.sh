@@ -18,7 +18,7 @@ cd rust
 
 docker build -t paygo-portal/rust:latest .
 
-docker run --rm -v web-src:/package paygo-portal/rust:latest
+docker run --rm -v web-src:/rust_build/dist paygo-portal/rust:latest
 
 cd ../web-browser
 
@@ -33,7 +33,7 @@ cd ../node-ts
 
 docker build -t paygo-portal/node-ts:latest .
 
-docker run -d -p 127.0.0.1:8080:80/tcp -v static-files:/public\
+docker run --init -d -p 127.0.0.1:8080:80/tcp -v static-files:/public\
   paygo-portal/node-ts:latest
 
 docker volume prune -f
