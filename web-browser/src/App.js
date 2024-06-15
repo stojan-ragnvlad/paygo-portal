@@ -11,7 +11,9 @@ export default class App extends React.Component {
     };
 
     this.state.worker.onmessage = (event) => {
-      console.log(create_sql_schema_from_csv(new Uint8Array(event.data)).length);
+      console.log(new Uint8Array(event.data).length);
+
+      console.log(create_sql_schema_from_csv(new Uint8Array(event.data)));
     };
   }
 
