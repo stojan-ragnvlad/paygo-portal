@@ -56,7 +56,7 @@ fn create_csv_record_data_types_and_max_text_lengths(
   records: StringRecordsIter
 ) -> ([CsvCellDataType], [u32]) {
   let record_data_types: [number_of_columns; CsvCellDataType] =
-    [number_of_columns, CsvCellDataType::None];
+    [number_of_columns, CsvCellDataType::Empty];
 
   let record_max_text_lengths: [u32; headers.len()] = [number_of_columns, 0];
 
@@ -66,7 +66,7 @@ fn create_csv_record_data_types_and_max_text_lengths(
         record_max_text_lengths[index] = value.len();
       }
 
-      let mut data_type = CsvCellDataType::None;
+      let mut data_type = CsvCellDataType::Empty;
 
       let mut parsed_value = value.parse::<CsvCellDataType::Int>();
 
@@ -85,14 +85,14 @@ fn create_csv_record_data_types_and_max_text_lengths(
       match data_type {
         CsvCellDataType::Float => {
           if (
-            record_data_types[index] == CsvCellDataType::None ||
+            record_data_types[index] == CsvCellDataType::Empty ||
             record_data_types[index] == CsvCellDataType::Int
           ) {
             record_data_types[index] = CsvCellDataType::Float;
           }
         },
         CsvCellDataType::Int => {
-          if record_data_types[index] == CsvCellDataType::None {
+          if record_data_types[index] == CsvCellDataType::Empty {
             record_data_types[index] = CsvCellDataType::Int;
           }
         },
