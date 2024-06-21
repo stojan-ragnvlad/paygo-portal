@@ -1,6 +1,5 @@
 use wasm_bindgen::prelude::*;
 use csv::ReaderBuilder;
-use csv::StringRecordsIter;
 
 #[derive(Clone)]
 enum CsvCellDataType {
@@ -23,7 +22,7 @@ pub fn create_sql_schema_from_csv(
   let (record_data_types, record_max_text_lengths) =
     create_csv_record_data_types_and_max_text_lengths(
       headers.len(),
-      reader.records().unwrap()
+      reader
     );
 
   let mut columns: Vec<String> = Vec::new();
@@ -53,14 +52,14 @@ pub fn create_sql_schema_from_csv(
 
 fn create_csv_record_data_types_and_max_text_lengths(
   number_of_columns: usize,
-  records: StringRecordsIter
+  reader: ReaderBuilder
 ) -> (Vec<crate::CsvCellDataType>, Vec<usize>) {
   let record_data_types: Vec<crate::CsvCellDataType> =
     vec![crate::CsvCellDataType::Empty; number_of_columns];
 
   let record_max_text_lengths: Vec<u32> = vec![0, number_of_columns];
 
-  for record in records {
+  for record in reader.records().unwrap() {
     for (index, value) in record.iter().enumerate() {
       if value.len() > record_max_text_lengths[index] {
         record_max_text_lengths[index] = value.len();
