@@ -31,8 +31,8 @@ pub fn create_sql_schema_from_csv(
     let mut column = format!("VARCHAR({})", record_max_text_lengths[index]);
 
     match record_data_types[index] {
-      CsvCellDataType::Float => column = "FLOAT",
-      CsvCellDataType::Int => column = "INTEGER"
+      crate::CsvCellDataType::Float => column = "FLOAT".to_string(),
+      crate::CsvCellDataType::Int => column = "INTEGER".to_string()
     }
 
     columns.push(column);
@@ -51,11 +51,11 @@ pub fn create_sql_schema_from_csv(
 }
 
 fn create_csv_record_data_types_and_max_text_lengths(
-  number_of_columns: u32,
+  number_of_columns: usize,
   records: StringRecordsIter
-) -> (Vec<CsvCellDataType>, Vec<u32>) {
-  let record_data_types: Vec<CsvCellDataType> =
-    vec![CsvCellDataType::Empty; number_of_columns];
+) -> (Vec<crate::CsvCellDataType>, Vec<u32>) {
+  let record_data_types: Vec<crate::CsvCellDataType> =
+    vec![crate::CsvCellDataType::Empty; number_of_columns];
 
   let record_max_text_lengths: Vec<u32> = vec![0, number_of_columns];
 
@@ -65,39 +65,39 @@ fn create_csv_record_data_types_and_max_text_lengths(
         record_max_text_lengths[index] = value.len();
       }
 
-      let mut data_type = CsvCellDataType::Empty;
+      let mut data_type = crate::CsvCellDataType::Empty;
 
-      let mut parsed_value = value.parse::<CsvCellDataType::Int>();
+      let mut parsed_value = value.parse::<crate::CsvCellDataType::Int>();
 
       if Err(parsed_value) {
-        parsed_value = value.parse::<CsvCellDataType::Float>();
+        parsed_value = value.parse::<crate::CsvCellDataType::Float>();
       } else {
-        data_type = CsvCellDataType::Int;
+        data_type = crate::CsvCellDataType::Int;
       }
 
       if Err(parsed_value) {
-        data_type = CsvCellDataType::Text;
+        data_type = crate::CsvCellDataType::Text;
       } else {
-        data_type = CsvCellDataType::Float;
+        data_type = crate::CsvCellDataType::Float;
       }
 
       match data_type {
-        CsvCellDataType::Float => {
+        crate::CsvCellDataType::Float => {
           if (
-            record_data_types[index] == CsvCellDataType::Empty ||
-            record_data_types[index] == CsvCellDataType::Int
+            record_data_types[index] == crate::CsvCellDataType::Empty ||
+            record_data_types[index] == crate::CsvCellDataType::Int
           ) {
-            record_data_types[index] = CsvCellDataType::Float;
+            record_data_types[index] = crate::CsvCellDataType::Float;
           }
         },
-        CsvCellDataType::Int => {
-          if record_data_types[index] == CsvCellDataType::Empty {
-            record_data_types[index] = CsvCellDataType::Int;
+        crate::CsvCellDataType::Int => {
+          if record_data_types[index] == crate::CsvCellDataType::Empty {
+            record_data_types[index] = crate::CsvCellDataType::Int;
           }
         },
-        CsvCellDataType::Text => {
-          if record_data_types[index] != CsvCellDataType::Text {
-            record_data_types[index] = CsvCellDataType::Text;
+        crate::CsvCellDataType::Text => {
+          if record_data_types[index] != crate::CsvCellDataType::Text {
+            record_data_types[index] = crate::CsvCellDataType::Text;
           }
         }
       }
