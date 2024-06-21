@@ -1,5 +1,5 @@
 use wasm_bindgen::prelude::*;
-use csv::ReaderBuilder;
+use csv::Reader;
 
 #[derive(Clone)]
 enum CsvCellDataType {
@@ -52,7 +52,7 @@ pub fn create_sql_schema_from_csv(
 
 fn create_csv_record_data_types_and_max_text_lengths(
   number_of_columns: usize,
-  reader: ReaderBuilder
+  reader: Reader
 ) -> (Vec<crate::CsvCellDataType>, Vec<usize>) {
   let record_data_types: Vec<crate::CsvCellDataType> =
     vec![crate::CsvCellDataType::Empty; number_of_columns];
