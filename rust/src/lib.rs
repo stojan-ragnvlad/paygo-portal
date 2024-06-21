@@ -4,10 +4,10 @@ use csv::ReaderBuilder;
 use csv::StringRecordsIter;
 
 enum CsvCellDataType {
-  Int(i32),
-  Float(f64),
-  Text(String),
-  Empty(None)
+  Int,
+  Float,
+  Text,
+  Empty
 }
 
 #[wasm_bindgen]
