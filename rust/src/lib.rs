@@ -68,10 +68,10 @@ fn create_csv_record_data_types_and_max_text_lengths(
 
       let mut data_type = crate::CsvCellDataType::Empty;
 
-      let mut parsed_value = value.parse::<crate::CsvCellDataType::Int>();
+      let mut parsed_value = value.parse::<u32>();
 
       if Err(parsed_value) {
-        parsed_value = value.parse::<crate::CsvCellDataType::Float>();
+        parsed_value = value.parse::<f64>();
       } else {
         data_type = crate::CsvCellDataType::Int;
       }
