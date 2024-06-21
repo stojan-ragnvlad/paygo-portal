@@ -1,5 +1,4 @@
 use wasm_bindgen::prelude::*;
-use regex::Regex;
 use csv::ReaderBuilder;
 use csv::StringRecordsIter;
 
