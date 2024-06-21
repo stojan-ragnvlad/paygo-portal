@@ -33,7 +33,8 @@ pub fn create_sql_schema_from_csv(
 
     match record_data_types[index] {
       crate::CsvCellDataType::Float => column = "FLOAT".to_string(),
-      crate::CsvCellDataType::Int => column = "INTEGER".to_string()
+      crate::CsvCellDataType::Int => column = "INTEGER".to_string(),
+      _ => ()
     }
 
     columns.push(column);
@@ -58,9 +59,9 @@ fn create_csv_record_data_types_and_max_text_lengths(
   let record_data_types: Vec<crate::CsvCellDataType> =
     vec![crate::CsvCellDataType::Empty; number_of_columns];
 
-  let record_max_text_lengths: Vec<u32> = vec![0, number_of_columns];
+  let record_max_text_lengths: Vec<usize> = vec![0, number_of_columns];
 
-  for record in reader.records().unwrap() {
+  for record in reader.records() {
     for (index, value) in record.iter().enumerate() {
       if value.len() > record_max_text_lengths[index] {
         record_max_text_lengths[index] = value.len();
