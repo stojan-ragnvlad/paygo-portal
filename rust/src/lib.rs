@@ -84,10 +84,10 @@ fn create_csv_record_data_types_and_max_text_lengths(
 
       match data_type {
         crate::CsvCellDataType::Float => {
-          if (
+          if
             record_data_types[index] == crate::CsvCellDataType::Empty ||
             record_data_types[index] == crate::CsvCellDataType::Int
-          ) {
+          {
             record_data_types[index] = crate::CsvCellDataType::Float;
           }
         },
