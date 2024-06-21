@@ -54,11 +54,11 @@ pub fn create_sql_schema_from_csv(
 fn create_csv_record_data_types_and_max_text_lengths(
   number_of_columns: u32,
   records: StringRecordsIter
-) -> ([CsvCellDataType], [u32]) {
+) -> (Vec<CsvCellDataType>, Vec<u32>) {
   let record_data_types: [number_of_columns; CsvCellDataType] =
     [number_of_columns, CsvCellDataType::Empty];
 
-  let record_max_text_lengths: [u32; headers.len()] = [number_of_columns, 0];
+  let record_max_text_lengths: [u32; number_of_columns] = [number_of_columns, 0];
 
   for record in records {
     for (index, value) in record.iter().enumerate() {
@@ -105,6 +105,6 @@ fn create_csv_record_data_types_and_max_text_lengths(
     }
   }
 
-  return (record_data_types, record_max_text_lengths);
+  return (record_data_types.to_vec(), record_max_text_lengths.to_vec());
 }
 
