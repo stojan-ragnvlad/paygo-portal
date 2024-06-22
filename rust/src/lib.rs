@@ -2,6 +2,7 @@ use wasm_bindgen::prelude::*;
 use csv::ReaderBuilder;
 use csv::Reader;
 
+#[derive(PartialEq)]
 #[derive(Clone)]
 enum CsvCellDataType {
   Int,
@@ -18,17 +19,15 @@ pub fn create_sql_schema_from_csv(
   let mut reader =
     ReaderBuilder::new().delimiter(b',').from_reader(csv_contents);
 
-  let headers = reader.headers().unwrap();
-
   let (record_data_types, record_max_text_lengths) =
     create_csv_record_data_types_and_max_text_lengths(
-      headers.len(),
-      reader
+      reader.headers().unwrap().len(),
+      &mut reader
     );
 
   let mut columns: Vec<String> = Vec::new();
 
-  for (index, header) in headers.iter().enumerate() {
+  for (index, _header) in reader.headers().unwrap().iter().enumerate() {
     let mut column = format!("VARCHAR({})", record_max_text_lengths[index]);
 
     match record_data_types[index] {
@@ -54,33 +53,33 @@ pub fn create_sql_schema_from_csv(
 
 fn create_csv_record_data_types_and_max_text_lengths(
   number_of_columns: usize,
-  reader: Reader<&[u8]>
+  reader: &mut Reader<&[u8]>
 ) -> (Vec<crate::CsvCellDataType>, Vec<usize>) {
-  let record_data_types: Vec<crate::CsvCellDataType> =
+  let mut record_data_types: Vec<crate::CsvCellDataType> =
     vec![crate::CsvCellDataType::Empty; number_of_columns];
 
-  let record_max_text_lengths: Vec<usize> = vec![0, number_of_columns];
+  let mut record_max_text_lengths: Vec<usize> = vec![0, number_of_columns];
 
   for record in reader.records() {
-    for (index, value) in record.iter().enumerate() {
+    for (index, value) in record.unwrap().iter().enumerate() {
       if value.len() > record_max_text_lengths[index] {
         record_max_text_lengths[index] = value.len();
       }
 
       let mut data_type = crate::CsvCellDataType::Empty;
 
-      let mut parsed_value = value.parse::<u32>();
+      let parsed_int = value.parse::<u32>();
 
-      if Err(parsed_value) {
-        parsed_value = value.parse::<f64>();
-      } else {
-        data_type = crate::CsvCellDataType::Int;
-      }
+      match parsed_int {
+        Ok(_) => data_type = crate::CsvCellDataType::Int,
+        Err(_) => {
+          let parsed_float = value.parse::<f64>();
 
-      if Err(parsed_value) {
-        data_type = crate::CsvCellDataType::Text;
-      } else {
-        data_type = crate::CsvCellDataType::Float;
+          match parsed_float {
+            Ok(_) => data_type = crate::CsvCellDataType::Float,
+            Err(_) => data_type = crate::CsvCellDataType::Text
+          }
+        }
       }
 
       match data_type {
@@ -101,7 +100,8 @@ fn create_csv_record_data_types_and_max_text_lengths(
           if record_data_types[index] != crate::CsvCellDataType::Text {
             record_data_types[index] = crate::CsvCellDataType::Text;
           }
-        }
+        },
+        _ => ()
       }
     }
   }
