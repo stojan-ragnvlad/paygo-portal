@@ -14,7 +14,7 @@ COPY src src
 
 COPY Cargo.toml Cargo.lock .
 
-RUN wasm-pack build --target web -d package
+RUN wasm-pack build --dev --target web -d package
 
 CMD mkdir -p dist && cp -R package/* dist
 
