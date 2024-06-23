@@ -2,6 +2,17 @@ use wasm_bindgen::prelude::*;
 use csv::ReaderBuilder;
 use csv::Reader;
 
+#[wasm_bindgen]
+extern "C" {
+  #[wasm_bindgen(js_namespace = console)]
+  fn log(s: &str);
+}
+
+macro_rules! console_log {
+  ($($t:tt)*) => (log(&format_args!($($t)*).to_string()))
+}
+
+#[derive(Debug)]
 #[derive(PartialEq)]
 #[derive(Clone)]
 enum CsvCellDataType {
@@ -27,12 +38,17 @@ pub fn create_sql_schema_from_csv(
 
   let mut columns: Vec<String> = Vec::new();
 
-  for (index, _header) in reader.headers().unwrap().iter().enumerate() {
-    let mut column = format!("VARCHAR({})", record_max_text_lengths[index]);
+  for (index, header) in reader.headers().unwrap().iter().enumerate() {
+    let mut column =
+      format!("{} VARCHAR({})", header, record_max_text_lengths[index]);
 
     match record_data_types[index] {
-      crate::CsvCellDataType::Float => column = "FLOAT".to_string(),
-      crate::CsvCellDataType::Int => column = "INTEGER".to_string(),
+      crate::CsvCellDataType::Float => {
+        column = header.to_string() + " FLOAT";
+      },
+      crate::CsvCellDataType::Int => {
+        column = header.to_string() + " INTEGER";
+      },
       _ => ()
     }
 
@@ -58,7 +74,7 @@ fn create_csv_record_data_types_and_max_text_lengths(
   let mut record_data_types: Vec<crate::CsvCellDataType> =
     vec![crate::CsvCellDataType::Empty; number_of_columns];
 
-  let mut record_max_text_lengths: Vec<usize> = vec![0, number_of_columns];
+  let mut record_max_text_lengths: Vec<usize> = vec![0; number_of_columns];
 
   for record in reader.records() {
     for (index, value) in record.unwrap().iter().enumerate() {
@@ -68,7 +84,7 @@ fn create_csv_record_data_types_and_max_text_lengths(
 
       let mut data_type = crate::CsvCellDataType::Empty;
 
-      let parsed_int = value.parse::<u32>();
+      let parsed_int = value.parse::<i32>();
 
       match parsed_int {
         Ok(_) => data_type = crate::CsvCellDataType::Int,
