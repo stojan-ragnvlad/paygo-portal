@@ -57,8 +57,53 @@ pub fn create_sql_schema_from_csv(
 
   let table_name = csv_filename.strip_suffix(".csv").unwrap();
 
-  let final_statement =
-    format!("CREATE TABLE {} ({});", table_name, columns.join(", "));
+  let mut final_statement =
+    format!("CREATE TABLE {} ({});\n", table_name, columns.join(", "));
+
+  final_statement.push_str(&format!("INSERT INTO {} VALUES ", table_name));
+
+  reader = ReaderBuilder::new().delimiter(b',').from_reader(csv_contents);
+
+  let records_count = reader.records().count();
+
+  reader = ReaderBuilder::new().delimiter(b',').from_reader(csv_contents);
+
+  for (record_index, record) in reader.records().enumerate() {
+    let mut insert_string = "(".to_string();
+
+    let values = record.unwrap();
+
+    for (value_index, value) in values.iter().enumerate() {
+      match record_data_types[value_index] {
+        crate::CsvCellDataType::Int => {
+          insert_string.push_str(&format!("{}", value));
+        },
+        crate::CsvCellDataType::Float => {
+          insert_string.push_str(&format!("{}", value));
+        },
+        crate::CsvCellDataType::Text => {
+          insert_string.push_str(&format!("'{}'", value));
+        },
+        crate::CsvCellDataType::Empty => {
+          insert_string.push_str("NULL");
+        }
+      }
+
+      if value_index < values.len() - 1 {
+        insert_string.push_str(", ");
+      } else {
+        insert_string.push_str(")");
+      }
+    }
+
+    if record_index < records_count - 1 {
+      insert_string.push_str(",\n");
+    } else {
+      insert_string.push_str(";");
+    }
+
+    final_statement.push_str(&insert_string);
+  }
 
   let mut sql_statements: Vec<String> = Vec::new();
 
