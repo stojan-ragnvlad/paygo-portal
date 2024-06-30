@@ -13,6 +13,6 @@ docker build -t paygo-portal/web-project:latest .
 then, run the following:
 
 ```
-docker run -v ./dist:/dist paygo-portal/web-project:latest
+docker run --rm -v ./dist:/dist paygo-portal/web-project:latest
 ```
 

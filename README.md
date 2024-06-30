@@ -307,3 +307,5 @@ pip install csvkit psycopg2-binary
 csvsql --db "postgresql://hostname:port/nutrition?user=postgres&password=password" --insert --create-if-not-exists --db-schema "public" acquisition_samples.csv
 ```
 
+https://docs.docker.com/engine/install/ubuntu/#install-from-a-package
+
