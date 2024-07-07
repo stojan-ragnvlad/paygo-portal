@@ -10,6 +10,10 @@ export default class App extends React.Component {
 
     this.state.worker.onmessage = (event) => {
       console.log(event.data);
+
+      fetch('/query', { method: 'POST', body: event.data })
+        .then((response) => response.json())
+        .then((body) => console.log(body));
     };
   }
 
