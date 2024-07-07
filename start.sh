@@ -18,7 +18,10 @@ cd rust
 
 docker build -t paygo-portal/rust:latest .
 
-docker run --rm -v web-src:/rust_build/dist paygo-portal/rust:latest
+docker run --rm -v web-src:/rust_build/dist paygo-portal/rust:latest\
+  -e build-type=wasm
+
+docker run -d --rm -e build-type=executable
 
 cd ../web-browser
 
