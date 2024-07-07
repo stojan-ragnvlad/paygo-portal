@@ -1,20 +1,18 @@
 FROM rust:1.78.0-alpine3.18
 
-RUN apk --no-cache add curl
-
-RUN curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
-
 RUN apk --no-cache add clang
 
 RUN apk --no-cache add build-base
+
+RUN cargo install wasm-pack
 
 WORKDIR rust_build
 
 COPY src src
 
-COPY Cargo.toml Cargo.lock .
+COPY Cargo.toml .
 
-RUN wasm-pack build --dev --target web -d package
+COPY build.sh .
 
-CMD mkdir -p dist && cp -R package/* dist
+CMD ["sh", "build.sh"]
 
