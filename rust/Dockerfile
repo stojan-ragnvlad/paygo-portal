@@ -10,9 +10,19 @@ WORKDIR rust_build
 
 COPY src src
 
-COPY Cargo.toml .
+# ARG application_url
+
+ARG PP_BUILD_TYPE
 
 COPY build.sh .
 
-CMD ["sh", "build.sh"]
+# RUN sh build.sh $application_url
+
+COPY Cargo.toml .
+
+RUN sh build.sh
+
+COPY run.sh .
+
+CMD sh run.sh
 
