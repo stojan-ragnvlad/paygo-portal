@@ -5,20 +5,38 @@ export default class App extends React.Component {
     super(props);
 
     this.state = {
-      worker: new Worker(new URL('worker.js', import.meta.url))
+      <% if (worker) { %>
+        worker: new Worker(
+          new URL(<%- worker.sourceUrl %>, import.meta.url)
+        ),
+      <% } %>
+
+      <% if (string) { %>
+        <%- string.variableName %>: '',
+      <% } %>
     };
 
-    this.state.worker.onmessage = (event) => {
-      console.log(event.data);
-    };
+    <% if (worker) { %>
+      this.state.worker.onmessage = (event) => {
+        console.log(event.data);
+      };
+    <% } %>
   }
 
-  onFileInputChange(event) {
-    const file = event.target.files[0];
+  <% if (worker) { %>
+    onFileInputChange(event) {
+      const file = event.target.files[0];
 
-    if (file) {
-      this.state.worker.postMessage(file);
+      if (file) {
+        this.state.worker.postMessage(file);
+      }
     }
+  <% } %>
+
+  onButtonChange(event) {
+    let <%- actionDestination %> = <%- actionFunction %>();
+
+    this.setState({ <%- actionDestination %> });
   }
 
   render() {
@@ -26,12 +44,24 @@ export default class App extends React.Component {
       <div>
         <h1>React App</h1>
 
-        <input
-          key="1"
-          type="file"
-          accept="text/csv"
-          onChange={(event) => this.onFileInputChange(event)}
-        />
+        <% if (fileUploader) { %>
+          <input
+            key="1"
+            type="file"
+            accept="text/csv"
+            onChange={(event) => this.onFileInputChange(event)}
+          />
+        <% } %>
+
+        <% if (button) { %>
+          <button
+            key="1"
+            onSubmit={(event) => this.onButtonChange(event)}
+          ><%= labelWithin %></button>
+        <% } %>
+
+        <% if (paragraph) { %>
+        <% } %>
       </div>
     );
   }
