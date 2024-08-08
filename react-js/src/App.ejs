@@ -33,11 +33,13 @@ export default class App extends React.Component {
     }
   <% } %>
 
-  onButtonChange(event) {
-    let <%- actionDestination %> = <%- actionFunction %>();
+  <% if (button) { %>
+    onButtonChange(event) {
+      let <%- actionDestination %> = <%- actionFunction %>();
 
-    this.setState({ <%- actionDestination %> });
-  }
+      this.setState({ <%- actionDestination %> });
+    }
+  <% } %>
 
   render() {
     return (
