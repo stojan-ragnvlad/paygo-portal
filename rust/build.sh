@@ -6,6 +6,8 @@ then
 
   cargo add csv@1.3.0
 
+  cargo add rand@0.8.5
+
   wasm-pack build --dev --target web -d package
 elif [ "$PP_BUILD_TYPE" = "executable" ]
 then
