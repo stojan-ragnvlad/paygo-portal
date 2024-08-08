@@ -22,6 +22,8 @@ enum CsvCellDataType {
   Empty
 }
 
+pub fn create_a_secure_hash_key() -> String {}
+
 #[wasm_bindgen]
 pub fn create_sql_schema_from_csv(
   csv_filename: &str,
