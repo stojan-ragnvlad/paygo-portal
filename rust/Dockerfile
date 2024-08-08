@@ -10,13 +10,9 @@ WORKDIR rust_build
 
 COPY src src
 
-# ARG application_url
-
 ARG PP_BUILD_TYPE
 
 COPY build.sh .
-
-# RUN sh build.sh $application_url
 
 COPY Cargo.toml .
 
