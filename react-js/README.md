@@ -7,7 +7,8 @@ mkdir -p dist && rm -rf ./dist/*
 then, run the following:
 
 ```
-docker build -t paygo-portal/web-project:latest .
+docker build --build-arg application_url=some_url\
+  -t paygo-portal/web-project:latest .
 ```
 
 then, run the following:

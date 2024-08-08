@@ -10,9 +10,15 @@ WORKDIR rust_build
 
 COPY src src
 
-COPY Cargo.toml .
+ARG PP_BUILD_TYPE
 
 COPY build.sh .
 
-CMD ["sh", "build.sh"]
+COPY Cargo.toml .
+
+RUN sh build.sh
+
+COPY run.sh .
+
+CMD sh run.sh
 

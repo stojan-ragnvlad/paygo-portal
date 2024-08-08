@@ -1,0 +1,8 @@
+routes:
+  -
+    uri: /index.html
+    upstream:
+        nodes:
+            "127.0.0.1:8080": 1
+        type: roundrobin
+#END

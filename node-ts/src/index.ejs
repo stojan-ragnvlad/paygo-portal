@@ -1,0 +1,18 @@
+import express from 'express';
+
+const server = express();
+
+<% if (type === 'static-file-server') { %>
+  server.use(express.static('<%- staticFileHostDirectory %>'));
+<% } %>
+
+<% if (type === 'http-server') { %>
+  server.use(express.text());
+
+  server.post('/query', (request, response) => {
+    console.log('Querying!');
+  });
+<% } %>
+
+server.listen(<%- port %>);
+
