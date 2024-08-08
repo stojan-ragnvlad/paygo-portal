@@ -1,6 +1,8 @@
 use wasm_bindgen::prelude::*;
 use csv::ReaderBuilder;
 use csv::Reader;
+use rand::{Rng, thread_rng};
+use rand::distributions::Alphanumeric;
 
 #[wasm_bindgen]
 extern "C" {
@@ -22,7 +24,15 @@ enum CsvCellDataType {
   Empty
 }
 
-pub fn create_a_secure_hash_key() -> String {}
+#[wasm_bindgen]
+pub fn create_a_secure_hash_key() -> String {
+  let mut range = thread_rng();
+
+  let chars: String =
+      (0..24).map(|_| range.sample(Alphanumeric) as char).collect();
+
+  return chars;
+}
 
 #[wasm_bindgen]
 pub fn create_sql_schema_from_csv(
