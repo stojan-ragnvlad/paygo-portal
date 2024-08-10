@@ -13,6 +13,7 @@ docker build --build-arg="PP_BUILD_TYPE=wasm" -t paygo-portal/rust:latest .
 * Run to build the project:
 
 ```
-docker run --rm -v ./package:/rust_build/dist paygo-portal/rust:latest
+docker run --rm -e PP_BUILD_TYPE=wasm -v ./package:/rust_build/dist\
+  paygo-portal/rust:latest
 ```
 
