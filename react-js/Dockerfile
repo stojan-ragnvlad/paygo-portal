@@ -2,7 +2,7 @@ FROM node:21.7.3-alpine3.19
 
 RUN apk --no-cache add curl
 
-ARG application_url
+ARG application_json_url
 
 WORKDIR /build
 
