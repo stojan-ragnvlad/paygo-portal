@@ -5,25 +5,25 @@ export default class App extends React.Component {
     super(props);
 
     this.state = {
-      <% if (worker) { %>
+      <% if (locals.worker) { %>
         worker: new Worker(
-          new URL(<%- worker.sourceUrl %>, import.meta.url)
+          new URL(<%- locals.worker.sourceUrl %>, import.meta.url)
         ),
       <% } %>
 
-      <% if (string) { %>
-        <%- string.variableName %>: '',
+      <% if (locals.string) { %>
+        <%- locals.string.variableName %>: '',
       <% } %>
     };
 
-    <% if (worker) { %>
+    <% if (locals.worker) { %>
       this.state.worker.onmessage = (event) => {
         console.log(event.data);
       };
     <% } %>
   }
 
-  <% if (worker) { %>
+  <% if (locals.worker) { %>
     onFileInputChange(event) {
       const file = event.target.files[0];
 
@@ -33,11 +33,12 @@ export default class App extends React.Component {
     }
   <% } %>
 
-  <% if (button) { %>
+  <% if (locals.button) { %>
     onButtonChange(event) {
-      let <%- actionDestination %> = <%- actionFunction %>();
+      let <%- locals.button.actionDestination %> =
+        <%- locals.button.actionFunction %>();
 
-      this.setState({ <%- actionDestination %> });
+      this.setState({ <%- locals.button.actionDestination %> });
     }
   <% } %>
 
@@ -46,7 +47,7 @@ export default class App extends React.Component {
       <div>
         <h1>React App</h1>
 
-        <% if (fileUploader) { %>
+        <% if (locals.fileUploader) { %>
           <input
             key="1"
             type="file"
@@ -55,15 +56,15 @@ export default class App extends React.Component {
           />
         <% } %>
 
-        <% if (button) { %>
+        <% if (locals.button) { %>
           <button
             key="1"
             onSubmit={(event) => this.onButtonChange(event)}
-          ><%= labelWithin %></button>
+          ><%= locals.labelWithin %></button>
         <% } %>
 
-        <% if (paragraph) { %>
-          <p>{ this.<%- textSource %> }</p>
+        <% if (locals.paragraph) { %>
+          <p>{ this.<%- locals.paragraph.textSource %> }</p>
         <% } %>
       </div>
     );
