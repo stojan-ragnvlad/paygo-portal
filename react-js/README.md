@@ -17,3 +17,8 @@ then, run the following:
 docker run --rm -v ./dist:/dist paygo-portal/web-project:latest
 ```
 
+# Notes on EJS
+
+To refer to top level properties in the input json object, use the `locals`
+variable name.
+
