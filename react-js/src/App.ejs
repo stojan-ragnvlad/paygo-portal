@@ -1,5 +1,11 @@
 import React from 'react';
 
+<% if (locals.button.actionFunction) { %>
+  import init, {
+    <%- locals.button.actionFunction %>
+  } from '../lib/compile_time_tools';
+<% } %>
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
