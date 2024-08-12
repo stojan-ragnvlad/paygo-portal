@@ -20,6 +20,10 @@ export default class App extends React.Component {
       <% if (locals.string) { %>
         <%- locals.string.variableName %>: '',
       <% } %>
+
+      <% if (locals.button.actionFunction %>
+        webAssemblyInitialized: init(),
+      <% } %>
     };
 
     <% if (locals.worker) { %>
@@ -41,11 +45,12 @@ export default class App extends React.Component {
 
   <% if (locals.button) { %>
     onButtonChange(event) {
-      let <%- locals.button.actionDestination %> =
-        <%- locals.button.actionFunction %>();
+      this.state.webAssemblyInitialized.then(() => {
+        let <%- locals.button.actionDestination %> =
+          <%- locals.button.actionFunction %>();
 
-      this.setState({ <%- locals.button.actionDestination %> });
-    }
+        this.setState({ <%- locals.button.actionDestination %> });
+      });
   <% } %>
 
   render() {
