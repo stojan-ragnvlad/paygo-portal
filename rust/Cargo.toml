@@ -11,3 +11,6 @@ path = "src/lib.rs"
 path = "src/main.rs"
 name = "main"
 
+[dependencies]
+getrandom = { version = "0.2", features = ["js"] }
+

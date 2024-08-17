@@ -1,6 +1,15 @@
 # paygo-portal
 Public Implementation of the Paygo Portal Infrastructure
 
+## Clean Coding with Authored Source Files
+
+The maximum number of lines in an authored source code file should not exceed
+100 lines.  This is to prevent excessive scrolling when reading source code.
+
+The maximum number of characters per line of an authored source code file
+should not exceed 80 characters.  This is to prevent horizontal scrolling when
+reading source code.
+
 ## Creating an Application
 
 1. Start up an Ubuntu Virtual Machine in a cloud environment.

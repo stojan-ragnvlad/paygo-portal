@@ -1,0 +1,84 @@
+import React from 'react';
+
+<% if (locals.button.actionFunction) { %>
+  import init, {
+    <%- locals.button.actionFunction %>
+  } from '../lib/compile_time_tools';
+<% } %>
+
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      <% if (locals.worker) { %>
+        worker: new Worker(
+          new URL(<%- locals.worker.sourceUrl %>, import.meta.url)
+        ),
+      <% } %>
+
+      <% if (locals.string) { %>
+        <%- locals.string.variableName %>: '',
+      <% } %>
+
+      <% if (locals.button.actionFunction %>
+        webAssemblyInitialized: init(),
+      <% } %>
+    };
+
+    <% if (locals.worker) { %>
+      this.state.worker.onmessage = (event) => {
+        console.log(event.data);
+      };
+    <% } %>
+  }
+
+  <% if (locals.worker) { %>
+    onFileInputChange(event) {
+      const file = event.target.files[0];
+
+      if (file) {
+        this.state.worker.postMessage(file);
+      }
+    }
+  <% } %>
+
+  <% if (locals.button) { %>
+    onButtonChange(event) {
+      this.state.webAssemblyInitialized.then(() => {
+        let <%- locals.button.actionDestination %> =
+          <%- locals.button.actionFunction %>();
+
+        this.setState({ <%- locals.button.actionDestination %> });
+      });
+  <% } %>
+
+  render() {
+    return (
+      <div>
+        <h1>React App</h1>
+
+        <% if (locals.fileUploader) { %>
+          <input
+            key="1"
+            type="file"
+            accept="text/csv"
+            onChange={(event) => this.onFileInputChange(event)}
+          />
+        <% } %>
+
+        <% if (locals.button) { %>
+          <button
+            key="1"
+            onSubmit={(event) => this.onButtonChange(event)}
+          ><%= locals.labelWithin %></button>
+        <% } %>
+
+        <% if (locals.paragraph) { %>
+          <p>{ this.<%- locals.paragraph.textSource %> }</p>
+        <% } %>
+      </div>
+    );
+  }
+}
+
